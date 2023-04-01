@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords"
+          content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template" />
+    <meta name="description"
+          content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>@ViewData["Title"]</title>
+    <link rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="~/assetsA/assets/images/favicon.png" />
+    <link href="~/assetsA/assets/libs/flot/css/float-chart.css" rel="stylesheet" />
+    <link href="~/assetsA/dist/css/style.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <div id="main-wrapper"
+         data-layout="vertical"
+         data-navbarbg="skin5"
+         data-sidebartype="full"
+         data-sidebar-position="absolute"
+         data-header-position="absolute"
+         data-boxed-layout="full">
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+                    <a class="navbar-brand" href="/admin">
+                        <b class="logo-icon ps-2">
+                            <img src="~/assetsA/assets/images/logo-icon.png"
+                                 alt="homepage"
+                                 class="light-logo"
+                                 width="25" />
+                        </b>
+                        <span class="logo-text ms-2"> Food Project </span>
+                    </a>
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none"
+                       href="javascript:void(0)">
+                        <i class="ti-menu ti-close"></i>
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse"
+                     id="navbarSupportedContent"
+                     data-navbarbg="skin5">
+                    <ul class="navbar-nav float-start me-auto">
+                        <li class="nav-item d-none d-lg-block">
+                            <a class="nav-link sidebartoggler waves-effect waves-light"
+                               href="javascript:void(0)"
+                               data-sidebartype="mini-sidebar">
+                                <i class="mdi mdi-menu font-24"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav float-end">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic"
+                               href="#"
+                               id="navbarDropdown"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="~/assetsA/assets/images/users/1.jpg"
+                                     alt="user"
+                                     class="rounded-circle"
+                                     width="31" />
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end user-dd animated"
+                                aria-labelledby="navbarDropdown">
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item"
+                                   href="javascript:void(0)">
+                                    <i class="mdi mdi-settings me-1 ms-1"></i>
+                                    @User.Identity.Name!
+                                </a>
+                                <a class="dropdown-item"
+                                   href="javascript:void(0)">
+                                    <form class="brand-image" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                        <button type="submit" class="btn btn-danger btn-sm">Logout <i class="fa fa-power-off me-1 ms-1"></i></button>
+                                    </form>
+                                </a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar" data-sidebarbg="skin5">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav" class="pt-4">
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark"
+                               href="javascript:void(0)"
+                               aria-expanded="false">
+                                <i class="mdi mdi-face"></i><span class="hide-menu">Users </span>
+                            </a>
+                            <ul aria-expanded="false"
+                                class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a href="/usermanagement"
+                                       class="sidebar-link">
+                                        <i class="mdi mdi-emoticon"></i><span class="hide-menu">
+                                            List Users
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark"
+                               href="javascript:void(0)"
+                               aria-expanded="false">
+                                <i class="mdi mdi-account-circle"></i><span class="hide-menu"> Roles  </span>
+                            </a>
+                            <ul aria-expanded="false"
+                                class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a href="/rolemanagement"
+                                       class="sidebar-link">
+                                        <i class="mdi mdi-account-circle"></i><span class="hide-menu">
+                                            List Roles
+                                        </span>
+                                    </a>
+                                </li>                          
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark"
+                               href="javascript:void(0)"
+                               aria-expanded="false">
+                                <i class="mdi mdi-food"></i><span class="hide-menu">Products </span>
+                            </a>
+                            <ul aria-expanded="false"
+                                class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a href="/productmanagement"
+                                       class="sidebar-link">
+                                        <i class="mdi mdi-food-fork-drink"></i><span class="hide-menu">
+                                            List Products
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark"
+                               href="javascript:void(0)"
+                               aria-expanded="false">
+                                <i class="mdi mdi-apps"></i><span class="hide-menu">Categories  </span>
+                            </a>
+                            <ul aria-expanded="false"
+                                class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a href="/categoriesmanagement"
+                                       class="sidebar-link">
+                                        <i class="mdi mdi-apps"></i><span class="hide-menu">
+                                            List Categories
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark"
+                               href="javascript:void(0)"
+                               aria-expanded="false">
+                                <i class="mdi mdi-lead-pencil"></i><span class="hide-menu">Comments  </span>
+                            </a>
+                            <ul aria-expanded="false"
+                                class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a href="/commentsmanagement"
+                                       class="sidebar-link">
+                                        <i class="mdi mdi-lead-pencil"></i><span class="hide-menu">
+                                            List Comments
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark"
+                               href="javascript:void(0)"
+                               aria-expanded="false">
+                                <i class="mdi mdi-reorder-horizontal"></i><span class="hide-menu">Orders</span>
+                            </a>
+                            <ul aria-expanded="false"
+                                class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a href="/orderconfirmationmanagement"
+                                       class="sidebar-link">
+                                        <i class="mdi mdi-reorder-horizontal"></i><span class="hide-menu">
+                                            List Orders
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark"
+                               href="javascript:void(0)"
+                               aria-expanded="false">
+                                <i class="mdi mdi-cellphone"></i><span class="hide-menu">Contacts</span>
+                            </a>
+                            <ul aria-expanded="false"
+                                class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a href="/contactmanagement"
+                                       class="sidebar-link">
+                                        <i class="mdi mdi-cellphone"></i><span class="hide-menu">
+                                            List Contacts
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark"
+                               href="javascript:void(0)"
+                               aria-expanded="false">
+                                <i class="mdi mdi-currency-btc"></i><span class="hide-menu">Coupons</span>
+                            </a>
+                            <ul aria-expanded="false"
+                                class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a href="/couponmanagement"
+                                       class="sidebar-link">
+                                        <i class="mdi mdi-currency-btc"></i><span class="hide-menu">
+                                            List Coupon
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark"
+                               href="javascript:void(0)"
+                               aria-expanded="false">
+                                <i class="mdi mdi-contacts"></i><span class="hide-menu">Contacts System</span>
+                            </a>
+                            <ul aria-expanded="false"
+                                class="collapse first-level">
+                                <li class="sidebar-item">
+                                    <a href="/contactsystem"
+                                       class="sidebar-link">
+                                        <i class="mdi mdi-contacts"></i><span class="hide-menu">
+                                            List Contact
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+
+        <div class="page-wrapper" style="height: 800px;">
+            <!-- Nội dung code ở đây -->
+            @RenderBody()
+            <footer class="footer text-center">
+                Designed and Developed by
+                <a href="https://www.wrappixel.com">Phong Ho</a>.
+            </footer>
+        </div>
+    </div>
+    <script src="~/assetsA/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="~/assetsA/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assetsA/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/assetsA/assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="~/assetsA/dist/js/waves.js"></script>
+    <script src="~/assetsA/dist/js/sidebarmenu.js"></script>
+    <script src="~/assetsA/dist/js/custom.min.js"></script>
+    <script src="~/assetsA/assets/libs/flot/excanvas.js"></script>
+    <script src="~/assetsA/assets/libs/flot/jquery.flot.js"></script>
+    <script src="~/assetsA/assets/libs/flot/jquery.flot.pie.js"></script>
+    <script src="~/assetsA/assets/libs/flot/jquery.flot.time.js"></script>
+    <script src="~/assetsA/assets/libs/flot/jquery.flot.stack.js"></script>
+    <script src="~/assetsA/assets/libs/flot/jquery.flot.crosshair.js"></script>
+    <script src="~/assetsA/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="~/assetsA/dist/js/pages/chart/chart-page-init.js"></script>
+</body>
+</html>

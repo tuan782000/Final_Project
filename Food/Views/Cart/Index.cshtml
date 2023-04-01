@@ -1,0 +1,217 @@
+﻿@model IEnumerable<Food.Models.ProductInCartModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+<div class="hero-wrap hero-bread" style="background-image: url(/assetsb/images/bg_1.jpg)">
+   <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
+            <h1 class="mb-0 bread">My Cart</h1>
+          </div>
+        </div>
+   </div>   
+</div>
+  <!-- / catg header banner section -->
+
+ <!-- Cart view section -->
+@* <section id="cart-view">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="cart-view-area">
+           <div class="cart-view-table">
+             <form action="">
+               <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach(var item in Model)
+                            {
+                                int totalPriceInProduct = item.Quantity * item.ProductPrice;
+                                <tr>
+                                    <td><a class="remove" href="/cart/remove?id=@item.ProductId"><fa class="fa fa-close"></fa></a></td>
+                                    <td><a href="#"><img src="@item.ProductImg1" alt="img"></a></td>
+                                    <td><a class="aa-cart-title" href="/productdetail?id=@item.ProductId">@item.ProductName</a></td>
+                                    <td>$@item.ProductPrice</td>
+                                    <td><span>@item.Quantity</span></td>
+                                    <td>$@totalPriceInProduct</td>
+                                </tr>           
+                            }
+                        }
+                      <tr>
+                        <td colspan="6" class="aa-cart-view-bottom">
+                          
+                        </td>
+                      </tr>
+                      </tbody>
+                  </table>
+                </div>
+             </form>
+             <form asp-action="addCoupon" method="post">
+                 <div >
+                    <input class="aa-coupon-code" type="text" name="coupon" placeholder="Coupon">
+                    <input class="aa-cart-view-btn" type="submit" value="Apply Coupon">
+                </div>
+             </form>
+             <!-- Cart Total view -->
+             <div class="cart-view-total">
+               <h4>Cart Totals</h4>
+               <table class="aa-totals-table">
+                 <tbody>
+                     <tr>
+                     <th>Subtotal</th>
+                     <td>$@ViewBag.Subtotal</td>
+                   </tr>
+                   <tr>
+                     <th>Discount</th>
+                     <td>@ViewBag.CouponPrice</td>
+                   </tr>
+                   <tr>
+                     <th>Shipping</th>
+                     <td>$@ViewBag.Ship</td>
+                   </tr>
+                   <tr>
+                     <th>Total</th>
+                     <td>$@ViewBag.total </td>
+                   </tr>
+                 </tbody>
+               </table>
+               <a href="/checkout" class="aa-cart-view-btn">Proced to Checkout</a>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+*@ <!-- / Cart view section -->
+
+<section class="ftco-section ftco-cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ftco-animate">
+                <div class="cart-list">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+                                <th>Action</th>
+                                <th>Product image</th>
+                                <th>Product name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var item in Model)
+                                {
+                                    int totalPriceInProduct = item.Quantity * item.ProductPrice;
+                                    <tr class="text-center">
+                                        <td class="product-remove"><a href="/cart/remove?id=@item.ProductId"><span class="ion-ios-close"></span></a></td>
+                                        <td class="image-prod"><a class="img" href="#"><img class="img" src="@item.ProductImg1" alt="img"></a></td>
+                                        <td class="product-name"><a href="/productdetail?id=@item.ProductId">@item.ProductName</a></td>
+                                        <td class="price">$@item.ProductPrice</td>
+                                        <td class="quantity">
+                                            <div class="input-group mb-3">
+                                                <input type="text" disabled name="quantity" class="quantity form-control input-number" value="@item.Quantity">
+                                            </div>
+                                        </td>
+                                        <td class="total">$@totalPriceInProduct</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+                <div class="cart-total mb-3">
+                    <h3>Coupon Code</h3>
+                    <p>Enter your coupon code if you have one</p>
+                    <form asp-action ="addCoupon" method="post" class="info">
+                        <div class="form-group">
+                            <label for="">Coupon code</label>
+                            <input type="text" class="form-control text-left px-3" name="coupon" placeholder="Coupon">
+                        </div>
+                        <input class="btn btn-primary py-3 px-4" type="submit" value="Apply Coupon">
+                    </form>
+                </div>
+              @*  <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>*@
+                
+            </div>
+            <div class="col-lg-4 mt-5 cart-wrap ftco-animate" style="display: none">
+                <div class="cart-total mb-3">
+                    <h3>Estimate shipping and tax</h3>
+                    <p>Enter your destination to get a shipping estimate</p>
+                    <form action="#" class="info">
+                        <div class="form-group">
+                            <label for="">Country</label>
+                            <input type="text" class="form-control text-left px-3" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="country">State/Province</label>
+                            <input type="text" class="form-control text-left px-3" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Zip/Postal Code</label>
+                            <input type="text" class="form-control text-left px-3" placeholder="">
+                        </div>
+                    </form>
+                </div>
+                <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Estimate</a></p>
+            </div>
+            <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+                <div class="cart-total mb-3">
+                    <h3>Cart Totals</h3>
+                    <p class="d-flex">
+                        <span>Subtotal</span>
+                        <span>$@ViewBag.Subtotal</span>
+                    </p>
+                    <p class="d-flex">
+                        <span>Delivery</span>
+                        <span>@ViewBag.Ship</span>
+                    </p>
+                    <p class="d-flex">
+                        <span>Discount</span>
+                        <span>$@ViewBag.CouponPrice</span>
+                    </p>
+                    <hr>
+                    <p class="d-flex total-price">
+                        <span>Total</span>
+                        <span>$@ViewBag.total</span>
+                    </p>
+                </div>
+                <p><a href="/checkout" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function addPaid() {
+        var couponCode = document.querySelector("#page > div.colorlib-product > div > div:nth-child(3) > div > div > div > div.col-sm-8 > form > div > div.col-sm-9 > input").value;
+
+        var paidButton = document.querySelector("#page > div.colorlib-product > div > div:nth-child(3) > div > div > div > div.col-sm-8 > form > div > div.col-sm-3 > a");
+        paidButton.href = "/cart/paid?coupon=" + couponCode;
+    }
+</script>

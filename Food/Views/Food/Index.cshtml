@@ -1,0 +1,155 @@
+﻿@model Food.Service.PaginatedList<Food.Models.ProductModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+<div class="hero-wrap hero-bread" style="background-image: url('/assetsb/images/bg_1.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Products</span></p>
+                <h1 class="mb-0 bread">Products</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 mb-5 text-center">
+                <ul class="product-category">
+                    @*<li><a href="#" class="active">All</a></li>
+                    <li><a href="#">Vegetables</a></li>
+                    <li><a href="#">Fruits</a></li>
+                    <li><a href="#">Juice</a></li>
+                    <li><a href="#">Dried</a></li>*@
+                    @{
+                        foreach (var item in ViewBag.Categories)
+                        {
+                            string url = "/food?categoriesName=" + item.cg_Name;
+                            <li><a href="@url">@item.cg_Name </a></li>
+                        };
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            
+
+                @{
+                    foreach (var listProductFirst in Model)
+                    {
+                    <div class="col-md-6 col-lg-3 ftco-animate">
+                        <div class="product">
+                            <a href="/productdetail?id=@listProductFirst.pd_Id" class="img-prod">
+                                <img class="img-fluid" src="@listProductFirst.pd_Img1" alt="@listProductFirst.pd_Name">
+                                <span class="status">30%</span>
+                                <div class="overlay"></div>
+                            </a>
+                            <div class="text py-3 pb-4 px-3 text-center">
+                                <h3><a href="/productdetail?id=@listProductFirst.pd_Id">@listProductFirst.pd_Name</a></h3>
+                                <div class="d-flex">
+                                    <div class="pricing">
+                                        <p class="price"><span class="mr-2 price-dc">$@listProductFirst.pd_Price</span><span class="price-sale">$@listProductFirst.pd_Price</span></p>
+                                    </div>
+                                </div>
+                                <div class="bottom-area d-flex px-3">
+                                    <div class="m-auto d-flex">
+                                        <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                            <span><i class="ion-ios-menu"></i></span>
+                                        </a>
+                                        <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                            <span><i class="ion-ios-cart"></i></span>
+                                        </a>
+                                        <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                            <span><i class="ion-ios-heart"></i></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       </div>
+                    }
+                }
+            </div>
+
+
+
+
+        </div>
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+        <div class="row mt-5">
+            <div class="col text-center">
+                <div class="block-27">
+                    <ul>
+                        <li>
+                            <a asp-action="Index"
+                                asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                asp-route-pageNumber="@(Model.PageIndex - 1)"
+                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                class="@prevDisabled">
+                            <i class="ion-ios-arrow-back" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    @if (Model.PageIndex == 1)
+                    {
+
+                    }
+                    else
+                    {
+                        <li class="page-item ">
+                            <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-pageNumber="@(Model.PageIndex - 1)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="@prevDisabled">
+                                @(Model.PageIndex - 1)
+                            </a>
+                        </li>
+
+                    }
+
+                    <li class="page-item active">
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-pageNumber="@(Model.PageIndex)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="@nextDisabled">@Model.PageIndex</a>
+                    </li>
+
+                    <li class="page-item ">
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-pageNumber="@(Model.PageIndex + 1)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="@nextDisabled">
+                            @(Model.PageIndex + 1)
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-pageNumber="@(Model.PageIndex + 1)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="@nextDisabled">
+                            <i class="ion-ios-arrow-forward" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</section>
+
+

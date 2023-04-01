@@ -1,0 +1,101 @@
+﻿@page "/login"
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "~/Views/Shared/_LayoutLogin/_LayoutLogin.cshtml";
+}
+
+
+<div class="preloader">
+    <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+    </div>
+</div>
+
+<div class="
+          auth-wrapper
+          d-flex
+          no-block
+          justify-content-center
+          align-items-center
+          bg-dark
+        "
+style="height: 100vh">
+    <div class="auth-box bg-dark border-top border-secondary">
+        <div id="loginform">
+            <div class="text-center pt-3 pb-3">
+                <span class="db" style="font-weight: 500; font-size: 18px; color: #fff;">
+                    @*<img src="~/assetsA/assets/images/logo.png" alt="logo" />*@
+                    Login Page
+                </span>
+            </div>
+            <!-- Form -->
+            <form class="form-horizontal mt-3"
+                  id="loginform"
+                  method="post">
+                <div class="row pb-4">
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-success text-white h-100"
+                                      id="basic-addon1">
+                                    <i class="mdi mdi-account fs-4"></i>
+                                </span>
+                            </div>
+                            <input type="text"
+                                   class="form-control form-control-lg"
+                                   placeholder="Email"
+                                   aria-label="Email"
+                                   aria-describedby="basic-addon1"
+                                   required=""
+                                   asp-for="Input.Email" />
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-warning text-white h-100"
+                                      id="basic-addon2">
+                                    <i class="mdi mdi-lock fs-4"></i>
+                                </span>
+                            </div>
+                            <input type="password"
+                                   class="form-control form-control-lg"
+                                   placeholder="Password"
+                                   aria-label="Password"
+                                   aria-describedby="basic-addon1"
+                                   required=""
+                                   asp-for="Input.Password" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-top border-secondary">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="pt-3">
+                                @*<button class="btn btn-info"
+                                        id="to-recover"
+                                        type="button">
+                                    <i class="mdi mdi-lock fs-4 me-1"></i> Lost password?
+                                </button>*@
+                                <div class="icheck-primary">
+                                    <input type="checkbox" id="remember">
+                                    @*@Html.DisplayNameFor(m => m.Input.RememberMe)*@
+                                    <label for="remember" asp-for="Input.RememberMe">
+                                    </label>
+                                </div>
+                                <a class="btn btn-info" id="forgot-password" asp-page="./ForgotPassword"><i class="mdi mdi-lock fs-4 me-1"></i> Lost password?</a>
+                                <button class="btn btn-success float-end text-white"
+                                        type="submit">
+                                    Login
+                                </button>
+                                <br />
+                                <a class="btn btn-danger" style="margin-top: 15px;" id="forgot-password" asp-page="./Register"> Register as a new user</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
