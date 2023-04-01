@@ -9,7 +9,7 @@
 ## Contact Page
 ![This is Contact Page!](img/Contact.png "Contact")
 ## Detail Product
-![This is Cart Page!](img/DeatilProduct "Deatil Product")
+![This is Cart Page!](img/DeatilProduct.png "Deatil Product")
 ## Admin page
 ![This is Admin Page!](img/Admin.png "Order list")
 ## Detail order page
